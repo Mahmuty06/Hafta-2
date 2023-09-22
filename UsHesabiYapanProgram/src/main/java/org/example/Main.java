@@ -2,29 +2,30 @@
 import java.util.Scanner;
 
 public class Main {
-    static int usHesabi (int tabanDegeri, int usDegeri ) {
-       int sonuc ;
-
-        if (usDegeri == 0 ){
-            return 1 ;
-    }   else {
-            usDegeri -- ;
-           sonuc =  tabanDegeri * usHesabi(tabanDegeri,usDegeri);
-
-           return sonuc ;
+    static boolean asalSayi(int sayi, int bolen) {
+        if (sayi <= 1) {
+            return false;
         }
+        if (bolen == 1) {
+            return true;
         }
-    public static void main(String[] args) {
-
-        Scanner input =new Scanner(System.in) ;
-        int tabanDegeri , usDegeri ;
-
-        System.out.println("TABAN DEGERİ GİRİNİZ :");
-        tabanDegeri  = input.nextInt() ;
-
-        System.out.println("ÜS DEGERİ GİRİNİZ :");
-        usDegeri = input.nextInt() ;
-
-        System.out.println(usHesabi(tabanDegeri, usDegeri));
+        if (sayi % bolen == 0) {
+            return false;
+        }
+        return asalSayi(sayi, bolen - 1);
     }
-}
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Bir sayı giriniz: ");
+        int number = scanner.nextInt();
+
+        boolean asaled = asalSayi(number, number / 2 );
+        if (asaled) {
+            System.out.println(number + " bir asal sayıdır.");
+        } else {
+            System.out.println(number + " bir asal sayı değildir.");
+        }
+    }
+    }
